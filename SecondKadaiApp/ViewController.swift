@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var paramText: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +21,21 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    /*
+     * 画面遷移
+     */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        var secondViewController:SecondViewController = segue.destinationViewController as! SecondViewController
+        secondViewController.param = "こんにちわ" + self.paramText.text! + "さん"
+    }
+    
+    /*
+     * SecondViewから戻ってきた時の処理
+     */
 
-
+    @IBAction func backFromSecondView(segue:UIStoryboardSegue){
+        NSLog("FirstViewController#backFromSecondView")
+    }
 }
 
